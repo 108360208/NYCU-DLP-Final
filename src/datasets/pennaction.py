@@ -15,8 +15,8 @@ from bodymocap.models import SMPLX
 import time
 
 # Loading VPoser Body Pose Prior
-from human_body_prior.tools.model_loader import load_model
-from human_body_prior.models.vposer_model import VPoser
+from human_body_prior.src.human_body_prior.tools.model_loader import load_model
+from human_body_prior.src.human_body_prior.models.vposer_model import VPoser
 
 # Mano
 from manopth.manolayer import ManoLayer
