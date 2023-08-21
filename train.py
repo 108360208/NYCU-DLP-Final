@@ -86,6 +86,8 @@ def main():
     config.DATASET.TRAIN_DATA_ROOT = config.DATASET.TRAIN_DATA_ROOT + "/" + config.DATASET.NAME +"_train.npy"
     config.DATASET.VAL_DATA_ROOT = config.DATASET.TEST_DATA_ROOT = [config.DATASET.VAL_DATA_ROOT[0]  + "/" + config.DATASET.NAME +"_train.npy",
                                                                     config.DATASET.VAL_DATA_ROOT[1]  + "/" + config.DATASET.NAME +"_val.npy" ]    # To reproduce the results,
+    # print("train root{config.DATASET.TRAIN_DATA_ROOT}")
+    # print("val root{config.DATASET.VAL_DATA_ROOT}")
     pl.seed_everything(config.TRAINER.SEED)  # reproducibility
 
     # scale lr and warmup-step automatically
@@ -156,10 +158,7 @@ def main():
 
     # Lightning Trainer #fast_dev_run=True should be here
     trainer = pl.Trainer.from_argparse_args(
-        args,
-        plugins=DDPPlugin(find_unused_parameters=True,
-                          num_nodes=args.num_nodes,
-                          sync_batchnorm=config.TRAINER.WORLD_SIZE > 0),
+        args,  
         gradient_clip_val=config.TRAINER.GRADIENT_CLIPPING,
         callbacks=callbacks,
         logger=logger,
@@ -169,6 +168,13 @@ def main():
         weights_summary='full',
         profiler=profiler,
         fast_dev_run=False)
+    # trainer = pl.Trainer(
+    #     gradient_clip_val=config.TRAINER.GRADIENT_CLIPPING,
+    #     callbacks=callbacks,
+    #     logger=logger,
+    #     profiler=profiler,
+    #     fast_dev_run=False
+    # )
     loguru_logger.info("Trainer initialized!")
     loguru_logger.info("Start training!")
     trainer.fit(model, datamodule=data_module)

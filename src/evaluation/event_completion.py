@@ -136,7 +136,7 @@ class EventCompletion():
         datasets = copy.deepcopy(datasets_ori)
 
         num_classes = DATASET_TO_NUM_CLASSES[self.config.DATASET.NAME]  # 4
-        # print("num_class",num_classes)
+        #print("num_class",num_classes)
 
         #DICT = True
         #emb_mean = True
@@ -211,5 +211,5 @@ class EventCompletion():
         loguru_logger.info('Event Completion {} Fraction Val '
                            'Score: {:.5f},'.format(prefix,
                                                    val_score))
-
+    
         return train_score, val_score

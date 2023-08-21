@@ -13,10 +13,11 @@ import random
 from dataset_preparation.preprocess_norm_mat import pre_normalization_mat, get_openpose_connectivity
 from bodymocap.models import SMPLX
 import time
-
+import sys
+sys.path.append(r"c:\\users\\steven\\nycu-dlp-final\\human_body_prior\\src")
 # Loading VPoser Body Pose Prior
-from human_body_prior.src.human_body_prior.tools.model_loader import load_model
-from human_body_prior.src.human_body_prior.models.vposer_model import VPoser
+from human_body_prior.tools.model_loader import load_model
+from human_body_prior.models.vposer_model import VPoser
 
 # Mano
 from manopth.manolayer import ManoLayer

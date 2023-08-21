@@ -90,6 +90,7 @@ class Classification():
                 for key, emb in datasets['val_dataset']['embs'].items():
                     val_emb.append(np.average(np.array(emb), axis=0))
                     val_label.append(datasets['val_dataset']['labels'][key][0])
+        
                 datasets['train_dataset']['embs'] = train_emb
                 datasets['train_dataset']['labels'] = train_label
                 datasets['val_dataset']['embs'] = val_emb
@@ -108,10 +109,11 @@ class Classification():
                 for key, emb in datasets['val_dataset']['embs'].items():
                     val_emb.append(datasets['val_dataset']['embs'][key][0])
                     val_label.append(datasets['val_dataset']['labels'][key][0])
+           
                 datasets['train_dataset']['embs'] = train_emb
                 datasets['train_dataset']['labels'] = train_label
-                datasets['val_dataset']['embs'] = val_emb
-                datasets['val_dataset']['labels'] = val_label
+                datasets['val_dataset']['embs'] = train_emb
+                datasets['val_dataset']['labels'] = train_label
 
         val_embs = np.concatenate(datasets['val_dataset']['embs'])
         val_labels = np.concatenate(datasets['val_dataset']['labels'])

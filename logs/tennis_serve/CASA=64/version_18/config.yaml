@@ -1,0 +1,134 @@
+CASA:
+  BACKBONE_TYPE: FCL
+  EMBEDDER_TYPE: casa
+  FCL:
+    INITIAL_DIM: 75
+  LOSS:
+    FOCAL_ALPHA: 0.25
+    FOCAL_GAMMA: 2.0
+    LOSS_TYPE: regression
+    NEG_WEIGHT: 1.0
+    POS_WEIGHT: 1.0
+    TYPE: cross_entropy
+    WEIGHT: 1.0
+  MATCH:
+    ATTENTION: linear
+    BORDER_RM: 2
+    DSMAX_TEMPERATURE: 0.1
+    D_FFN: 256
+    D_MODEL: 75
+    LAYER_NAMES:
+    - self
+    - cross
+    - self
+    - cross
+    - self
+    - cross
+    - self
+    - cross
+    MATCH_ALGO: null
+    MATCH_TYPE: dual_softmax
+    NHEAD: 15
+    PE: true
+    SIMILARITY: false
+    TEMP_BUG_FIX: true
+    THR: 0.1
+    USE_PRIOR: true
+    VIS_CONF_TRAIN: false
+    VIS_CONF_VALIDATION: false
+  NUM_FRAMES: 20
+  PH:
+    BACKBONE_TYPE: PH
+    HIDDEN_DIM: 75
+    INPUT_DIM: 75
+    OUTPUT_DIM: 75
+    'TRUE': true
+  RESNETFPN:
+    BLOCK_DIMS:
+    - 128
+    - 196
+    - 256
+    INITIAL_DIM: 128
+  RESOLUTION:
+  - 8
+  - 2
+CLASSIFICATION:
+  ACC_LIST:
+  - 0.1
+  - 0.5
+  - 1.0
+CONSTRASTIVE:
+  AUGMENTATION_STRATEGY:
+  - fast
+  - noise_angle
+  - flip
+  - noise_translation
+  - noise_vposer
+  TRAIN: true
+DATASET:
+  ATT_STYLE: true
+  AUGMENTATION_TYPE: null
+  FOLDER: ./
+  FRAME_STRIDE: 15
+  LOGDIR: ./
+  MANO: false
+  MAX_LENGTH: 250
+  NAME: tennis_serve
+  NUM_FRAMES: 20
+  NUM_STEPS: 1
+  PATH: ./
+  SAMPLING_STRATEGY: offset_uniform
+  SMPL: true
+  TEST_DATA_ROOT: &id001
+  - npyrecords/tennis_serve_train.npy
+  - npyrecords/tennis_serve_val.npy
+  TEST_DATA_SOURCE: PennAction
+  TEST_LIST_PATH: null
+  TEST_NPZ_ROOT: ''
+  TEST_POSE_ROOT: null
+  TRAINVAL_DATA_SOURCE: PennAction
+  TRAIN_DATA_ROOT: npyrecords//tennis_serve_train.npy
+  TRAIN_LIST_PATH: null
+  TRAIN_NPZ_ROOT: ''
+  TRAIN_POSE_ROOT: null
+  USE_NORM: true
+  VAL_BATCH_SIZE: 1
+  VAL_DATA_ROOT: *id001
+  VAL_LIST_PATH: null
+  VAL_NPZ_ROOT: ''
+  VAL_POSE_ROOT: null
+EVAL:
+  EVENT_COMPLETION: true
+  KENDALLS_TAU: true
+  KENDALLS_TAU_DISTANCE: sqeuclidean
+  KENDALLS_TAU_STRIDE: 2
+TRAINER:
+  ADAMW_DECAY: 0.1
+  ADAM_DECAY: 0.0
+  CANONICAL_BS: 64
+  CANONICAL_LR: 0.0003
+  COSA_TMAX: 30
+  ELR_GAMMA: 0.999992
+  FIND_LR: false
+  GRADIENT_CLIPPING: 0.5
+  MSLR_GAMMA: 0.5
+  MSLR_MILESTONES:
+  - 30
+  - 40
+  - 50
+  - 60
+  - 70
+  - 80
+  - 90
+  - 100
+  OPTIMIZER: adam
+  SCALING: 1.0
+  SCHEDULER: MultiStepLR
+  SCHEDULER_INTERVAL: epoch
+  SEED: 50
+  TRUE_BATCH_SIZE: 64
+  TRUE_LR: 0.0003
+  WARMUP_RATIO: 0.0
+  WARMUP_STEP: 0
+  WARMUP_TYPE: linear
+  WORLD_SIZE: 1

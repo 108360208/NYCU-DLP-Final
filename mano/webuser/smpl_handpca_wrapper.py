@@ -141,4 +141,4 @@ def load_model(fname_or_dict='./models/SMPLH_female.pkl', ncomps=12, flat_hand_m
 if __name__ == '__main__':
     m = load_model()
     m.J_transformed
-    print 'FINITO'
+    print ('FINITO')

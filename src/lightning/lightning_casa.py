@@ -189,7 +189,7 @@ class PL_CASA(pl.LightningModule):
             val_embs = []
             train_labels = []
             val_labels = []
-        # print("outputs",outputs)
+        #print("outputs",outputs)
 
         for output in outputs:
             emb0 = output['emb0'].cpu().detach().numpy()
@@ -252,14 +252,19 @@ class PL_CASA(pl.LightningModule):
                         train_labels.append(label0[ii])
                         train_embs.append(emb1[ii])
                         train_labels.append(label1[ii])
+                                
+                      
                     elif output['mode'][ii] == 'val':
+                        
                         val_embs.append(emb0[ii])
                         val_labels.append(label0[ii])
                         val_embs.append(emb1[ii])
                         val_labels.append(label1[ii])
         # print()
+        
         datasets = {'train_dataset': {'embs': train_embs, 'labels': train_labels},
                     'val_dataset': {'embs': val_embs, 'labels': val_labels}}
+        #print("dataset(val):{}".format(datasets["train_dataset"]))
         print(self.profiler.summary())
         # datasets_event = copy.deepcopy(datasets)
         (train_accs, val_accs) = self.classification.evaluate_embeddings(

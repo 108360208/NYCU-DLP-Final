@@ -134,4 +134,4 @@ def load_model(fname_or_dict='./models/MANO_RIGHT.pkl', ncomps=6, flat_hand_mean
 if __name__ == '__main__':
     m = load_model()
     m.J_transformed
-    print 'FINITO'
+    print ('FINITO')
